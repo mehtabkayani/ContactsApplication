@@ -55,7 +55,6 @@ public class UserController {
     @GetMapping("/edit/{id}")
     public String editUser(@PathVariable Integer id, Model model) {
         User user = userService.getUserById(id);
-        user.setId(id);
         model.addAttribute("user", user);
         return "edit";
     }
@@ -66,7 +65,7 @@ public class UserController {
 
         if(active == "1"){
             user.setActive(true);
-        }else{
+        }else if(active == "0"){
             user.setActive(false);
         }
         userService.editUser(user);

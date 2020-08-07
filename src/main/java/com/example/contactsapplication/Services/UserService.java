@@ -36,6 +36,8 @@ public class UserService {
         user.setName(user1.getName());
         user.setEmail(user1.getEmail());
         user.setActive(user1.getActive());
+        user.setContactNumber(user1.getContactNumber());
+
         return userRepository.save(user);
 
     }

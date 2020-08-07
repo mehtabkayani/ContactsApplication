@@ -19,10 +19,12 @@ public class User {
 
     private String email;
 
+    private String contactNumber;
+
     public boolean isActive = true;
 
-    public User(String name, String email) {
-
+    public User(String name, String email,String contactNumber) {
+        this.contactNumber = contactNumber;
         this.name = name;
         this.email = email;
     }
@@ -60,5 +62,13 @@ public class User {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 }
