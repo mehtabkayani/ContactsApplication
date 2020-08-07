@@ -1,4 +1,4 @@
-package com.example.contactsapplication.Controllers;
+package com.example.contactsapplication.controllers;
 
 import com.example.contactsapplication.Models.User;
 import com.example.contactsapplication.Services.UserService;
@@ -19,11 +19,11 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/")
-    public String index(Model model,String keyword) {
+    public String index(Model model, String keyword) {
 
-        if(keyword != null){
-            model.addAttribute("userList",userService.searchUser(keyword));
-        }else{
+        if (keyword != null) {
+            model.addAttribute("userList", userService.searchUser(keyword));
+        } else {
 
             model.addAttribute("userList", userService.getAllUsers());
         }
@@ -60,12 +60,25 @@ public class UserController {
     }
 
     @PostMapping("/edit")
+
     public String edit(User user, Model model, RedirectAttributes redirectAttributes) {
 
         userService.editUser(user);
 
+
         return "redirect:/edit/" + user.getId();
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable Integer id, Model model) {
+        User user = userService.getUserById(id);
+        model.addAttribute(user);
+        return "/delete";
+    }
 
+    @PostMapping("/delete")
+    public String delete(User user, Model model, RedirectAttributes redirectAttributes) {
+        userService.deleteUser(user.getId());
+        return "redirect:/";
+    }
 }
