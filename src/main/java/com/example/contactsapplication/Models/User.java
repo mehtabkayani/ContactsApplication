@@ -1,32 +1,34 @@
 package com.example.contactsapplication.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.lang.NonNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id",nullable = true)
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
 
     private String email;
 
-    private boolean isActive;
+    public boolean isActive = true;
 
-    public User(){}
 
-    public User(String name, String email, boolean isActive) {
+    public User(String name, String email) {
+
         this.name = name;
         this.email = email;
-        this.isActive = isActive;
+    }
+
+    public User() {
     }
 
     public Integer getId() {
@@ -53,7 +55,7 @@ public class User {
         this.email = email;
     }
 
-    public boolean isActive() {
+    public boolean getActive() {
         return isActive;
     }
 
