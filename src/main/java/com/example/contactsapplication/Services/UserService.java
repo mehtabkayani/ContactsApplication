@@ -2,10 +2,13 @@ package com.example.contactsapplication.Services;
 
 import com.example.contactsapplication.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class UserService {
+@Repository
+public class UserService{
 
     @Autowired
     UserRepository userRepository;
@@ -20,7 +23,8 @@ public class UserService {
     }
 
     public User addUser(User user) {
-        return userRepository.save(user);
+         userRepository.save(user);
+         return user;
     }
 
     public User editUser(User user1) {

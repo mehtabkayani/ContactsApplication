@@ -21,10 +21,10 @@ public class User {
 
     private boolean isActive;
 
-    public User(String name, String email, boolean isActive) {
+    public User(String name, String email) {
         this.name = name;
         this.email = email;
-        this.isActive = isActive;
+        this.isActive = true;
     }
 
     public Integer getId() {
