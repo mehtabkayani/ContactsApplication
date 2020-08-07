@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
 @Repository
 public class UserService {
 
@@ -29,7 +28,7 @@ public class UserService {
         User user = userRepository.getOne(user1.getId());
         user.setName(user1.getName());
         user.setEmail(user1.getEmail());
-        user.setActive(user1.isActive());
+        user.setActive(user1.getActive());
         return userRepository.save(user);
 
     }
