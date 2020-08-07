@@ -21,7 +21,6 @@ public class User {
 
     public boolean isActive = true;
 
-
     public User(String name, String email) {
 
         this.name = name;
