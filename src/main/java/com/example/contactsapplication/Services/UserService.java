@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
 public class UserService {
 
@@ -15,6 +16,12 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+
+    public List<User> searchUser(String keyword) {
+        return userRepository.findByKeyword(keyword);
+    }
+
 
     public User getUserById(Integer id) {
         return userRepository.getOne(id);
@@ -33,5 +40,7 @@ public class UserService {
 
     }
 
-    public void deleteUser(Integer id) { userRepository.deleteById(id); }
+    public void deleteUser(Integer id) {
+        userRepository.deleteById(id);
+    }
 }

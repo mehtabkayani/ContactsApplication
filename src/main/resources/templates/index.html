@@ -4,16 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact Application</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
+          integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
 </head>
 <body>
 <h1 style="text-align: center">Contact Application</h1>
-<div>
-    <lable>Search for a user</lable>
-    <input placeholder="Enter the name..."/>
-    <a class="btn btn-info btn-sm">Search</a>
-</div>
+
+<form th:action="@{/}" method="get">
+    <div>
+        <lable>Search for a user</lable>
+        <input id="textSearch" type="text" name="keyword" placeholder="Enter the name/email..."/>
+        <button class="btn btn-info btn-sm" type="submit">Search</button>
+    </div>
+</form>
 <div></div>
+
 
 
 <table class="table table-striped">
