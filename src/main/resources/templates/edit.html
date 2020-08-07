@@ -13,8 +13,8 @@
 <form method="post" th:object="${user}" th:action="@{/edit}">
 
     <div class="form-group">
-        <label for="">Id:</label>
-        <input disabled type="text" class="form-control" th:field="*{id}" placeholder="ID">
+
+        <input type="hidden" class="form-control" th:field="*{id}" placeholder="ID">
 
     </div>
     <div class="form-group">
@@ -26,6 +26,14 @@
     <div class="form-group">
         <label for="">Email:</label>
         <input type="email" th:field="*{email}" class="form-control" placeholder="Email"></input>
+    </div>
+    <div class="form-group">
+        <label for="">Active:</label>
+        <select class="form-control" name="active">
+            <option th:value="1" >true</option>
+            <option th:value="0" >false</option>
+        </select>
+
     </div>
 
     <button class="btn btn-danger mb-5">Edit</button>

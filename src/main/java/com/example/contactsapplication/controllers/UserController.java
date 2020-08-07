@@ -49,24 +49,30 @@ public class UserController {
     public String add(User user, Model model, RedirectAttributes redirectAttributes) {
 
         userService.addUser(user);
-        return "redirect:/add";
+        return "redirect:/";
     }
 
     @GetMapping("/edit/{id}")
     public String editUser(@PathVariable Integer id, Model model) {
         User user = userService.getUserById(id);
+        user.setId(id);
         model.addAttribute("user", user);
         return "edit";
     }
 
     @PostMapping("/edit")
 
-    public String edit(User user, Model model, RedirectAttributes redirectAttributes) {
+    public String edit(User user, Model model, RedirectAttributes redirectAttributes, @RequestParam (name = "active") String active) {
 
+        if(active == "1"){
+            user.setActive(true);
+        }else{
+            user.setActive(false);
+        }
         userService.editUser(user);
 
 
-        return "redirect:/edit/" + user.getId();
+        return "redirect:/";
     }
 
     @GetMapping("/delete/{id}")
