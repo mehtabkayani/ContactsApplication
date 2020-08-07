@@ -23,7 +23,7 @@
         <th scope="col">Email</th>
         <th scope="col">Active</th>
         <th scope="col">
-            <a class="btn btn-primary btn-sm">Add User</a>
+            <a href="/add" class="btn btn-primary btn-sm">Add User</a>
         </th>
     </tr>
     </thead>
@@ -33,7 +33,7 @@
         <td th:text="${user.email}"></td>
         <td th:text="${user.isActive}"></td>
         <td>
-            <a class="btn btn-success btn-sm">Edit</a>
+            <a th:href="@{'/edit/' + ${user.id}}" class="btn btn-success btn-sm">Edit</a>
             <a class="btn btn-danger btn-sm">Delete</a>
         </td>
     </tr>
