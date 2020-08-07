@@ -19,9 +19,24 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/")
-    public String index(Model model){
-        List<User> userList = userService.getAllUsers();
-        model.addAttribute("userList",userList);
+    public String index(Model model, String keyword) {
+
+        if (keyword != null) {
+            model.addAttribute("userList", userService.searchUser(keyword));
+        } else {
+
+            model.addAttribute("userList", userService.getAllUsers());
+        }
+
+        return "index";
+    }
+
+    @GetMapping("/search")
+    public String getSearch(String search, Model model) {
+        System.out.println(search);
+        List<User> searchedUsers = userService.searchUser(search);
+        model.addAttribute("userList", searchedUsers);
+
         return "index";
     }
 
@@ -31,7 +46,7 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public String add(User user, Model model, RedirectAttributes redirectAttributes){
+    public String add(User user, Model model, RedirectAttributes redirectAttributes) {
 
         userService.addUser(user);
         return "redirect:/add";
@@ -40,24 +55,29 @@ public class UserController {
     @GetMapping("/edit/{id}")
     public String editUser(@PathVariable Integer id, Model model) {
         User user = userService.getUserById(id);
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         return "edit";
     }
 
     @PostMapping("/edit")
-    public String edit(User user,Model model, RedirectAttributes redirectAttributes){
-       userService.editUser(user);
+
+    public String edit(User user, Model model, RedirectAttributes redirectAttributes) {
+
+        userService.editUser(user);
+
 
         return "redirect:/edit/" + user.getId();
     }
+
     @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable Integer id, Model model){
+    public String deleteUser(@PathVariable Integer id, Model model) {
         User user = userService.getUserById(id);
         model.addAttribute(user);
         return "/delete";
     }
+
     @PostMapping("/delete")
-    public String delete(User user, Model model, RedirectAttributes redirectAttributes){
+    public String delete(User user, Model model, RedirectAttributes redirectAttributes) {
         userService.deleteUser(user.getId());
         return "redirect:/";
     }
