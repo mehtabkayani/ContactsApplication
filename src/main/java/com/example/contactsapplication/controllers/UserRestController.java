@@ -24,8 +24,10 @@ public class UserRestController {
         return userService.getAllUsers();
     }
 
+
     @GetMapping("/id")
     public User getUserById(int id) {
+
         return userService.getUserById(id);
     }
 
@@ -33,5 +35,9 @@ public class UserRestController {
     public User editUser(@RequestBody User user1, @PathVariable Integer id) {
         user1.setId(id);
         return userService.editUser(user1);
+    }
+    @DeleteMapping("/delete/{id}")
+    public void deleteUser(@PathVariable int id){
+        userService.deleteUser(id);
     }
 }
