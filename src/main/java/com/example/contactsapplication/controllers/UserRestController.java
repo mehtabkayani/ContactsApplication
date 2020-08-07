@@ -23,12 +23,16 @@ public class UserRestController {
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
-    @GetMapping("/id")
-    public User getUserById(int id){
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable int id){
         return userService.getUserById(id);
     }
     @PutMapping("/edit")
     public User editUser(@RequestBody User user){
         return userService.editUser(user);
+    }
+    @DeleteMapping("/delete/{id}")
+    public void deleteUser(@PathVariable int id){
+        userService.deleteUser(id);
     }
 }
