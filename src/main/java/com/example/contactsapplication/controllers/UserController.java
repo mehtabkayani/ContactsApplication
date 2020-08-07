@@ -1,22 +1,27 @@
-package com.example.contactsapplication.controllers;
+package com.example.contactsapplication.Controllers;
 
 import com.example.contactsapplication.Models.User;
+import com.example.contactsapplication.Services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
+import java.util.List;
 
-@Controller()
+@Controller
 public class UserController {
+
+    @Autowired
+    UserService userService;
+
     @GetMapping("/")
-    public String index(){
+    public String index(Model model){
+        List<User> userList = userService.getAllUsers();
+        model.addAttribute("userList",userList);
         return "index";
     }
 
-    /*private ArrayList<User> loadUserTestData(){
-        ArrayList<User> users = new ArrayList<User>();
-        users.add(new User("Mackan", "mackan@hotmail.com", true));
-        users.add(new User("David", "david.stjernqvist@my.experis.se", true));
-    }*/
 
 }
